@@ -17,8 +17,8 @@ const images = [
     "image_14.jpg",
 ];
 
-// const twoColumnThreshold = 768;
-const threeColumnThreshold = 1024;
+const twoColumnThreshold = 640;
+const threeColumnThreshold = 768;
 
 // Function to distribute images into columns
 function distributeImages() {
@@ -30,15 +30,15 @@ function distributeImages() {
     if (window.innerWidth >= threeColumnThreshold) {
         columnCount = 3;
     }
-    // else if (window.innerWidth >= twoColumnThreshold) {
-    //     columnCount = 2;
-    // }
+    else if (window.innerWidth >= twoColumnThreshold) {
+        columnCount = 2;
+    }
 
     // Create columns
     const columns = [];
     for (let i = 0; i < columnCount; i++) {
         const column = document.createElement('div');
-        column.classList.add("flex", "flex-col", "gap-y-2", "sm:gap-y-5");
+        column.classList.add("flex", "flex-col", "gap-y-5");
         columns.push(column);
         gallery.appendChild(column);
     }
