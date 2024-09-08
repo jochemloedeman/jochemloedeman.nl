@@ -38,7 +38,7 @@ function distributeImages() {
     const columns = [];
     for (let i = 0; i < columnCount; i++) {
         const column = document.createElement('div');
-        column.classList.add("flex", "flex-col", "gap-y-5");
+        column.classList.add("flex", "flex-col", "gap-y-2", "sm:gap-y-5");
         columns.push(column);
         gallery.appendChild(column);
     }
