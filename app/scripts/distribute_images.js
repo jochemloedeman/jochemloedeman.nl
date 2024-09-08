@@ -1,12 +1,12 @@
 // Array of image sources
 const images = [
-    "image_8.jpg",
+    "image_7.jpg",
     "image_4.jpg",
     "image_12.jpg",
     "image_6.jpg",
     "image_13.jpg",
     "image_2.jpg",
-    "image_7.jpg",
+    "image_8.jpg",
     "image_0.jpg",
     "image_1.jpg",
     "image_9.jpg",
