@@ -1,21 +1,20 @@
 // Array of image sources
 const images = [
-    '/assets/images/P1070378-Enhanced-RD Large.jpeg',
-    '/assets/images/DSCF4429-Enhanced-RD Large.jpeg',
-    '/assets/images/P1070333-Enhanced-RD Large.jpeg',
-    '/assets/images/DSCF4744-Enhanced-RD Large.jpeg',
-    '/assets/images/P1070384-Enhanced-RD Large.jpeg',
-    '/assets/images/P1070444 Large.jpeg',
-    '/assets/images/DSCF4570-Enhanced-RD-2 Large.jpeg',
-    '/assets/images/DSC09328-Enhanced-NR Large.jpeg',
-    '/assets/images/P1070347-Enhanced-RD Large.jpeg',
-    '/assets/images/P1070303-Enhanced-RD Large.jpeg',
-    '/assets/images/DSCF4602-Enhanced-RD-2 Large.jpeg',
-    '/assets/images/DSC08987 Large.jpeg',
-    '/assets/images/DSC09061 Large.jpeg',
-    '/assets/images/DSC08870 Large.jpeg',
-    // '/assets/images/DSCF4667-Enhanced-RD Large.jpeg',
-    '/assets/images/DSCF4310-Enhanced-RD Large.jpeg',
+    'images/P1070378-Enhanced-RD Large.jpeg',
+    'images/DSCF4429-Enhanced-RD Large.jpeg',
+    'images/P1070333-Enhanced-RD Large.jpeg',
+    'images/DSCF4744-Enhanced-RD Large.jpeg',
+    'images/P1070384-Enhanced-RD Large.jpeg',
+    'images/P1070444 Large.jpeg',
+    'images/DSCF4570-Enhanced-RD-2 Large.jpeg',
+    'images/DSC09328-Enhanced-NR Large.jpeg',
+    'images/P1070347-Enhanced-RD Large.jpeg',
+    'images/P1070303-Enhanced-RD Large.jpeg',
+    'images/DSCF4602-Enhanced-RD-2 Large.jpeg',
+    'images/DSC08987 Large.jpeg',
+    'images/DSC09061 Large.jpeg',
+    'images/DSC08870 Large.jpeg',
+    'images/DSCF4310-Enhanced-RD Large.jpeg',
 ];
 
 const twoColumnThreshold = 768;
@@ -45,9 +44,13 @@ function distributeImages() {
     }
 
     images.forEach((src, index) => {
+        const hyperlink = document.createElement('a');
         const img = document.createElement('img');
         img.src = src;
-        columns[index % columnCount].appendChild(img);
+        hyperlink.href = src;
+        hyperlink.setAttribute('data-lightbox', 'gallery');
+        hyperlink.appendChild(img);
+        columns[index % columnCount].appendChild(hyperlink);
     });
 }
 
