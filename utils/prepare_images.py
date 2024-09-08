@@ -1,8 +1,8 @@
 from pathlib import Path
 from PIL import Image
 
-LIGHTBOX_RATIO = 0.8
-THUMBNAIL_RATIO = 0.3
+LIGHTBOX_RATIO = 0.4
+THUMBNAIL_RATIO = 0.24
 
 if __name__ == "__main__":
     # List all the images in the images folder
