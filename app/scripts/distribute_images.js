@@ -26,7 +26,7 @@ function distributeImages() {
 
     gallery.innerHTML = ''; // Clear existing content
     // Get the number of columns based on the current screen size
-    let columnCount = 2;
+    let columnCount = 1;
     if (window.innerWidth >= threeColumnThreshold) {
         columnCount = 3;
     }
