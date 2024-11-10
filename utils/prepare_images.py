@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from PIL import Image
 
@@ -14,7 +15,9 @@ if __name__ == "__main__":
     lightbox_folder.mkdir(exist_ok=True)
     thumbnail_folder.mkdir(exist_ok=True)
 
-    images = list(image_folder.glob("*.j*pg"))
+    images = list(
+        sorted(image_folder.glob("*.j*pg"), key=os.path.getmtime, reverse=False)
+    )
 
     for index, image in enumerate(images):
         # Create lightbox version
