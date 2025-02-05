@@ -1,5 +1,6 @@
-import os
+import hashlib
 from pathlib import Path
+
 from PIL import Image
 
 LIGHTBOX_RATIO = 0.4
@@ -15,18 +16,17 @@ if __name__ == "__main__":
     lightbox_folder.mkdir(exist_ok=True)
     thumbnail_folder.mkdir(exist_ok=True)
 
-    images = list(
-        sorted(image_folder.glob("*.j*pg"), key=os.path.getmtime, reverse=False)
-    )
+    images = list(image_folder.glob("*.j*pg"))
 
     for index, image in enumerate(images):
+        hashed = hashlib.md5(image.stem.encode()).hexdigest()
         # Create lightbox version
         with Image.open(image) as img:
             width, height = img.size
             new_height = int(height * LIGHTBOX_RATIO)
             new_width = int(width * LIGHTBOX_RATIO)
             img = img.resize((new_width, new_height))
-            img.save(app_image_folder / "lightbox" / f"image_{index}.jpg")
+            img.save(app_image_folder / "lightbox" / f"{hashed}.jpg")
 
         # Create thumbnail version
         with Image.open(image) as img:
@@ -34,4 +34,4 @@ if __name__ == "__main__":
             new_height = int(height * THUMBNAIL_RATIO)
             new_width = int(width * THUMBNAIL_RATIO)
             img = img.resize((new_width, new_height))
-            img.save(app_image_folder / "thumbnail" / f"image_{index}.jpg")
+            img.save(app_image_folder / "thumbnail" / f"{hashed}.jpg")
