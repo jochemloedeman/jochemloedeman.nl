@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="container flex justify-end">
                             <div class="flex text-gray-600 items-center">
-                                <a class="transition duration-300 font-poppins font-medium text-sm xs:text-lg mr-12 text-black hover:text-gray-500" href="/">
-                                    Portfolio
+                                <a class="transition duration-300 font-poppins font-medium text-sm xs:text-lg text-black hover:text-gray-500" href="/">
+                                    portfolio
                                 </a>
                             </div>
                         </div>
