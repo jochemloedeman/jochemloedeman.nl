@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JOCHEM LOEDEMAN</title>
+    <title>URBAN PHOTOGRAPHY - JOCHEM LOEDEMAN</title>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- Start - Fonts -->
@@ -23,7 +23,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <!-- CSS -->
-    <!-- <link href="styles/lightbox.min.css" rel="stylesheet" /> --> <!-- Lightbox CSS removed -->
+    <link href="styles/lightbox.min.css" rel="stylesheet" />
     <!-- End - Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -47,9 +47,11 @@
             plugins: [],
         }
     </script>
+    <!-- Add web components script -->
+    <script src="scripts/jl-components.js"></script>
 </head>
 
-<body class="bg-white h-screen text-black opacity-0 transition ease-in duration-700 mx-auto w-11/12">    <!-- Navbar -->
+<body class="bg-white h-screen text-black opacity-0 transition ease-in duration-700 mx-auto w-11/12">
     <header class="flex w-full overflow-hidden pt-12 pb-4 px-4">
         <div class="w-full mx-auto flex">
             <div class="text-gray-800 text-2xl sm:text-4xl font-semibold font-poppins whitespace-nowrap">
@@ -87,22 +89,26 @@
         </div>
     </header>
     <!-- Content -->
-    <main class="flex flex-col md:flex-row flex-grow items-center justify-center gap-y-8 gap-x-8 xl:gap-x-16 px-4 py-8">
-        <a href="urban.html" class="relative group w-4/5 sm:w-3/5 xl:w-2/5 overflow-hidden">
-            <img src="images/home/urban_representative.jpg" alt="Urban Photography" class="w-full object-cover transition-opacity duration-300 group-hover:opacity-80 max-h-[70vh] rounded-lg">
-            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-25 group-hover:bg-opacity-40 rounded-lg">
-                <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-poppins font-semibold tracking-wider">URBAN</span>
-            </div>
-        </a>
-        <a href="nature.html" class="relative group w-4/5 sm:w-3/5 xl:w-2/5 overflow-hidden">
-            <img src="images/home/nature_representative.jpg" alt="Nature Photography" class="w-full object-cover transition-opacity duration-300 group-hover:opacity-80 max-h-[70vh] rounded-lg">
-            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-25 group-hover:bg-opacity-40 rounded-lg">
-                <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-poppins font-semibold tracking-wider">NATURE</span>
-            </div>
-        </a>
-    </main>
-
-    <!-- Footer -->
+    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 space-x-9 px-4">
+    </div>
+    <script>
+        // Load images from JSON file
+        fetch('data/nature_images.json')
+            .then(response => response.json())
+            .then(data => {
+                images = data;
+                if (typeof distributeImages === 'function') {
+                    distributeImages(); // Call distributeImages after images are loaded
+                } else {
+                    console.error('distributeImages function not found. Make sure distribute_images.js is loaded correctly.');
+                }
+            })
+            .catch(error => console.error('Error loading urban images:', error));
+    </script>
+    <script src="scripts/distribute_images.js"></script>
+    <script src="scripts/fade_in.js"></script>
+    <script src="scripts/lightbox-plus-jquery.min.js"></script>
+        <!-- Footer -->
     <footer class="pb-10 pt-4 px-4">
         <div class="w-full mx-auto max-w-7xl">
             <p class="mt-8 text-xs text-gray-600 text-center">
@@ -113,5 +119,3 @@
     </footer>
     <script src="scripts/fade_in.js"></script>
 </body>
-
-</html>
