@@ -1,6 +1,5 @@
-import hashlib
 from pathlib import Path
-import json # Added import
+import json
 
 from PIL import Image
 
@@ -11,6 +10,8 @@ if __name__ == "__main__":
     # Define paths
     base_dir = Path(__file__).parents[1]
     image_folder = base_dir / "images"
+    nature_folder = image_folder / "nature"  # Added nature images folder
+    urban_folder = image_folder / "urban"  # Added urban images folder
     app_image_folder = base_dir / "app" / "images"
     data_folder = base_dir / "app" / "data" # Added data folder path
     lightbox_folder = app_image_folder / "lightbox"
@@ -37,50 +38,29 @@ if __name__ == "__main__":
     # Deduplicate image filenames, in case some images are in multiple lists
     image_filenames = list(set(image_filenames))
 
-
-    # Find the original image files based on the hashed names
-    # This requires a way to map hashed names back to original names or searching all original files
-    # For simplicity, this script assumes original files are named in a way that can be derived or found.
-    # This part of the logic needs to be adjusted based on how original image files are stored and named.
-    # Assuming the filenames in the JSON are the *hashed* filenames.
-    # We need to find the original files that correspond to these hashes.
-    # This is a placeholder for the logic to find original images.
-    # For this example, let's assume the JSON files contain original filenames (e.g., "my_photo.jpg")
-    # and we hash them here. If they are already hashed, this step is different.
-
-    # Let's refine the process: the JSON files should contain the *original* filenames.
-    # The script will then find these in the `images` folder, hash their stems, and process them.
-    # This means the JSON files need to be updated if they currently contain hashed names.
-    # For now, I will assume the JSON files contain *hashed* filenames as per the original HTML.
-    # The script will look for these hashed filenames (without extension) in the main `images` folder.
-    # This is likely incorrect, as the `images` folder contains original names.
-
-    # Corrected approach: The JSON files list the *hashed* filenames (e.g., '3f5d503317090d574dd337b962c4de55.jpg').
-    # The script needs to find the *original* image in the `image_folder` that corresponds to this hash.
-    # This requires either:
-    # 1. The JSON lists original filenames, and we hash them here.
-    # 2. We iterate all images in `image_folder`, hash them, and see if they are in `image_filenames`.
-
-    # Let's go with option 2, as it's more robust if the JSON contains hashed names.
-    
-    all_original_images = list(image_folder.glob("*.j*pg"))
+    # Now, image_filenames contains the original filenames (e.g., "my_photo.jpg")
     images_to_process = []
-
-    for original_image_path in all_original_images:
-        original_stem_hash = hashlib.md5(original_image_path.stem.encode()).hexdigest()
-        # Check if this hash (with .jpg extension) is in our list from JSON files
-        if f"{original_stem_hash}.jpg" in image_filenames:
-            images_to_process.append(original_image_path)
+    for filename in image_filenames:
+        # Check in nature folder first
+        nature_path = nature_folder / filename
+        urban_path = urban_folder / filename
+        
+        if nature_path.exists():
+            images_to_process.append(nature_path)
+        elif urban_path.exists():
+            images_to_process.append(urban_path)
+        else:
+            print(f"Warning: {filename} not found in {nature_folder} or {urban_folder}")
 
     if not images_to_process:
-        print("No images found to process. Check if JSON files list correct hashed filenames and original images exist.")
+        print("No images found to process. Check if JSON files list correct filenames and original images exist.")
         exit()
     
     print(f"Found {len(images_to_process)} images to process.")
 
     for index, image_path in enumerate(images_to_process):
-        # The hashed name is derived from the original image's stem
-        hashed_stem = hashlib.md5(image_path.stem.encode()).hexdigest()
+        # Use the original filename for output
+        output_name = image_path.name
         
         # Create lightbox version
         with Image.open(image_path) as img:
@@ -88,7 +68,7 @@ if __name__ == "__main__":
             new_height = int(height * LIGHTBOX_RATIO)
             new_width = int(width * LIGHTBOX_RATIO)
             img = img.resize((new_width, new_height))
-            img.save(lightbox_folder / f"{hashed_stem}.jpg")
+            img.save(lightbox_folder / output_name)
 
         # Create thumbnail version
         with Image.open(image_path) as img:
@@ -96,8 +76,9 @@ if __name__ == "__main__":
             new_height = int(height * THUMBNAIL_RATIO)
             new_width = int(width * THUMBNAIL_RATIO)
             img = img.resize((new_width, new_height))
-            img.save(thumbnail_folder / f"{hashed_stem}.jpg")
+            img.save(thumbnail_folder / output_name)
         
-        print(f"Processed {index + 1}/{len(images_to_process)}: {image_path.name} -> {hashed_stem}.jpg")
+        print(f"Processed {index + 1}/{len(images_to_process)}: {image_path.name}")
 
     print("Image preparation complete.")
+
