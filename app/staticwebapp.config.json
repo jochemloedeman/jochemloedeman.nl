@@ -1,0 +1,23 @@
+{
+  "routes": [
+    {                         
+      "route": "/app/nature.html",
+      "redirect": "/nature",
+      "statusCode": 301
+    },
+    {                         
+      "route": "/nature",
+      "rewrite": "/app/nature.html"
+    },
+    {
+        "route": "/app/urban.html",
+        "redirect": "/urban",
+        "statusCode": 301
+    },
+    {
+        "route": "/urban",
+        "rewrite": "/app/urban.html"
+    }
+    
+  ]
+}
