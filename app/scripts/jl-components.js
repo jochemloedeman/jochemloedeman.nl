@@ -10,6 +10,25 @@ document.addEventListener('DOMContentLoaded', function() {
                             JOCHEM LOEDEMAN.
                         </div>
                         <div class="container flex justify-end">
+                            <div class="flex text-gray-600 items-center">
+                                <a class="transition duration-300 font-poppins font-medium text-base sm:text-lg mr-12 text-black hover:text-gray-500" href="index.html">
+                                    Portfolio
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            `;
+        }
+    }
+
+    // Footer Component
+    class JLFooter extends HTMLElement {
+        connectedCallback() {
+            this.innerHTML = `
+                <footer class="pb-10 pt-4 px-4">
+                    <div class="w-full mx-auto max-w-7xl">
+                        <div class="flex justify-center mb-4">
                             <div class="flex space-x-3 xs:space-x-5 text-gray-600 items-center">
                                 <a class="transition duration-300 hover:opacity-75" href="https://www.instagram.com"
                                     target="_blank" rel="noreferrer">
@@ -38,18 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </header>
-            `;
-        }
-    }
-
-    // Footer Component
-    class JLFooter extends HTMLElement {
-        connectedCallback() {
-            this.innerHTML = `
-                <footer class="pb-10 pt-4 px-4">
-                    <div class="w-full mx-auto max-w-7xl">
                         <p class="mt-8 text-xs text-gray-600 text-center">
                             © 2025
                             <a href="https://www.linkedin.com/in/jochem-loedeman-811322124" class="">Jochem Loedeman</a>
@@ -67,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const errorType = this.getAttribute('error-type') || 'images';
             
             this.innerHTML = `
-                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 space-x-9 px-4">
+                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 space-x-9 px-4 py-8">
                 </div>
             `;
 
