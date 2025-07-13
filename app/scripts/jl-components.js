@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.innerHTML = `
                 <header class="flex w-full overflow-hidden pt-12 pb-4 px-4">
                     <div class="w-full mx-auto flex">
-                        <div class="text-gray-800 text-2xl sm:text-4xl font-semibold font-poppins whitespace-nowrap">
+                        <div class="text-gray-800 text-lg xs:text-2xl sm:text-4xl font-semibold font-poppins whitespace-nowrap">
                             JOCHEM LOEDEMAN.
                         </div>
                         <div class="container flex justify-end">
                             <div class="flex text-gray-600 items-center">
-                                <a class="transition duration-300 font-poppins font-medium text-base sm:text-lg mr-12 text-black hover:text-gray-500" href="/">
+                                <a class="transition duration-300 font-poppins font-medium text-sm xs:text-lg mr-12 text-black hover:text-gray-500" href="/">
                                     Portfolio
                                 </a>
                             </div>
