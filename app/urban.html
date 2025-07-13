@@ -52,22 +52,7 @@
 <body class="bg-white h-screen text-black opacity-0 transition ease-in duration-700 mx-auto w-11/12">
     <jl-navbar></jl-navbar>
     <!-- Content -->
-    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 space-x-9 px-4">
-    </div>
-    <script>
-        // Load images from JSON file
-        fetch('data/urban_images.json')
-            .then(response => response.json())
-            .then(data => {
-                images = data;
-                if (typeof distributeImages === 'function') {
-                    distributeImages(); // Call distributeImages after images are loaded
-                } else {
-                    console.error('distributeImages function not found. Make sure distribute_images.js is loaded correctly.');
-                }
-            })
-            .catch(error => console.error('Error loading urban images:', error));
-    </script>
+    <jl-gallery data-file="urban_images.json" error-type="urban images"></jl-gallery>
     <script src="scripts/distribute_images.js"></script>
     <script src="scripts/fade_in.js"></script>
     <script src="scripts/lightbox-plus-jquery.min.js"></script>

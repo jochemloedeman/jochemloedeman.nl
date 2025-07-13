@@ -60,7 +60,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Gallery Component
+    class JLGallery extends HTMLElement {
+        connectedCallback() {
+            const dataFile = this.getAttribute('data-file');
+            const errorType = this.getAttribute('error-type') || 'images';
+            
+            this.innerHTML = `
+                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 space-x-9 px-4">
+                </div>
+            `;
+
+            // Load images from JSON file
+            fetch(`data/${dataFile}`)
+                .then(response => response.json())
+                .then(data => {
+                    window.images = data;
+                    if (typeof distributeImages === 'function') {
+                        distributeImages();
+                    } else {
+                        console.error('distributeImages function not found. Make sure distribute_images.js is loaded correctly.');
+                    }
+                })
+                .catch(error => console.error(`Error loading ${errorType}:`, error));
+        }
+    }
+
     // Register components
     customElements.define('jl-navbar', JLNavbar);
     customElements.define('jl-footer', JLFooter);
+    customElements.define('jl-gallery', JLGallery);
 });
