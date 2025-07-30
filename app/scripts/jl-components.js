@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     class JLNavbar extends HTMLElement {
         connectedCallback() {
             this.innerHTML = `
-                <header class="flex w-full overflow-hidden pt-12 pb-4 px-4">
+                <header class="flex w-full overflow-hidden pt-12 pb-4">
                     <div class="w-full mx-auto flex">
                         <div class="text-gray-900 text-lg xs:text-2xl sm:text-4xl font-semibold font-poppins whitespace-nowrap">
                             JOCHEM LOEDEMAN.
                         </div>
-                        <div class="container flex justify-end">
+                        <div class="flex w-full justify-end">
                             <div class="flex text-gray-600 items-center">
                                 <a class="transition duration-300 font-poppins font-medium text-sm xs:text-lg text-gray-900 hover:text-gray-500" href="/">
                                     portfolio
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     class JLFooter extends HTMLElement {
         connectedCallback() {
             this.innerHTML = `
-                <footer class="pb-10 pt-4 px-4">
+                <footer class="pb-10 pt-4">
                     <div class="w-full mx-auto max-w-7xl">
                         <div class="flex justify-center mb-4">
                             <div class="flex space-x-3 xs:space-x-5 text-gray-600 items-center">
