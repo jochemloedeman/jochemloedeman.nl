@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const errorType = this.getAttribute('error-type') || 'images';
             
             this.innerHTML = `
-                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 space-x-9 py-8">
+                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 sm:gap-x-8">
                 </div>
             `;
 
