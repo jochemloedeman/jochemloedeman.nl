@@ -5,7 +5,6 @@ from pulumi_azure_native import resources, web
 RESOURCE_GROUP_NAME = "jochemloedeman.nl"
 STATIC_WEB_APP_NAME = "website"
 
-# Create an Azure Resource Group
 resource_group = resources.ResourceGroup(
     "jochemloedemannl",
     resource_group_name=RESOURCE_GROUP_NAME,
