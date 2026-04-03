@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>
                         </div>
                         <p class="mt-8 text-xs text-gray-600 text-center">
-                            © 2025
+                            © 2026
                             <a href="https://www.linkedin.com/in/jochem-loedeman-811322124" class="">Jochem Loedeman</a>
                         </p>
                     </div>
