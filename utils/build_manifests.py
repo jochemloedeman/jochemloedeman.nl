@@ -14,14 +14,18 @@ def write_manifest(folder: Path, manifest_path: Path):
     with open(manifest_path, "w") as f:
         json.dump(files, f, indent=4)
 
-if __name__ == "__main__":
 
-    # Define paths
+def main():
     base_dir = Path(__file__).parents[1]
-    image_folder = base_dir / Path("images")
+    image_folder = base_dir / "images"
     nature_folder = image_folder / "nature"
     urban_folder = image_folder / "urban"
+    data_folder = base_dir / "app" / "data"
+    data_folder.mkdir(parents=True, exist_ok=True)
 
-    # Build manifests
-    write_manifest(nature_folder, Path("../app/data/nature_images.json"))
-    write_manifest(urban_folder, Path("../app/data/urban_images.json"))
+    write_manifest(nature_folder, data_folder / "nature_images.json")
+    write_manifest(urban_folder, data_folder / "urban_images.json")
+
+
+if __name__ == "__main__":
+    main()
