@@ -1,3 +1,7 @@
+# /// script
+# requires-python = ">=3.12"
+# ///
+
 from pathlib import Path
 import json
 
